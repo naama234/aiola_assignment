@@ -1,3 +1,6 @@
+import time
+from datetime import datetime, timedelta
+
 import pytest as pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -81,7 +84,6 @@ def test_transaction_flow(driver):
     click_on_back_button(driver)
     deposit(driver, "200")
     withdraw(driver, "100")
-    # Refresh to see the new results
-    driver.refresh()
     click_on_transactions_button(driver)
+    driver.refresh()
     assert len(get_transactions(driver)) == 2, "Test Failed: There are not exactly 2 results."
